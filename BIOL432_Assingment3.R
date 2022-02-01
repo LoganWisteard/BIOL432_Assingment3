@@ -7,7 +7,7 @@ output: html_document
 
 # Project Info
 Date: 24/01/22
-[GitHub Repository]:
+[GitHub Repository]: https://github.com/LoganWisteard/BIOL432-assingment3
   
 library(dplyr) # load dplyr into R
 library(knitr) # load knitr into R
