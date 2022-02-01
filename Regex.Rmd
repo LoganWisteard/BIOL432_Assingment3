@@ -1,0 +1,43 @@
+---
+title: "Regex Assignment"
+author: "Logan Wisteard"
+date: "01/02/2022"
+output: html_document
+---
+---
+author: Logan Wisteard (20104157)
+GitHub username: LoganWisteard
+Date: 01/02/2022
+Project Link: https://github.com/LoganWisteard/BIOL432_Assingment3
+---
+Part I: Data Science
+This script will create a report using R markdown. This report will include comments for the reader and embedded R code that uses code learned so far to do the following (in any order that works):
+
+1. Open the project folder used in last week’s tutorial
+
+2.Create a new R Markdown file called Regex.Rmd, add your name, student number, and GitHub username, and then add code for each of the following steps:
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+setwd("~/Desktop/homefolder/BIOL432_Assingment3/")
+```
+
+#Import your measurements.csv file from the Week 1 Assignment into an object called MData
+```{r}
+MData <- read.csv("./measurments.csv")
+```
+
+#Use a dplyr command AND regular expression(s) to add a new column called Sp that shortens the genus name in the Organism column to only the first letter and period. For example: Homo sapiens in the original Organism column becomes H. sapiens in the Sp column. HINT: You can think of the regular expression commands like sub, grep, grepl and gsub as 'functions' that you can use with dplyr commands just like mean(), sd(), and desc() in the Data Science tutorial.Use a dplyr command to create a new dataset BUT with Sp column instead of the Organism column, moved to the beginning in place of the original Organism column.
+```{r}
+(short <- MData %>% mutate(Sp = gsub("(\\w)\\w+\\s+(\\w+)", "\\1. \\2", MData$Organism)) %>% 
+  select(Sp, Limb.length, Limb.width, Observer))
+```
+#Save the dataset as a new file called MeasShort.csv
+```{r}
+write.csv(short, "MeasShort.csv")
+```
+
